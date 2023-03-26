@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    @apply font-poppins;
+}
+
+.options-menu{
+    opacity: 0;
+    right: -30px;
+    animation: 1s options;
+}
+
+.options-menu.active{
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    right: 20px;
+    /* animation: 1s options2; */
+}
+
+#notif{
+    opacity: 0;
+    animation: 6s notif;
+    padding: 20px;
+    color: white;
+    background: #00bcdf;
+    margin-bottom: 30px;
+}
+
+@keyframes notif{
+    0%{
+        opacity: 1;
+    }
+    90%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+@keyframes options{
+    from{
+        opacity: 0;
+        right: -30px;
+    }
+    to{
+        opacity: 1;
+        right: 20px;
+    }
+}
+/* 
+@keyframes options2{
+    from{
+        opacity: 1;
+        right: 20px;
+    }
+    to{
+        opacity: 0;
+        right: 50px;
+    }
+} */
