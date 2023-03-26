@@ -16,7 +16,7 @@ services:
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_HOST
-        value: dpg-cgfm1am4daddcg0i37qg-a
+        value: dpg-cgg730o2qv28tc2e68ig-a
       - key: DB_PORT
         value: 5432
       - key: DB_DATABASE
