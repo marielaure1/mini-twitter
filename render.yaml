@@ -20,11 +20,11 @@ services:
       - key: DB_PORT
         value: 5432
       - key: DB_DATABASE
-        value: twitter
+        value: twitter_ll2x
       - key: DB_USERNAME
         value: root
       - key: DB_PASSWORD
-        value: root
+        value: 0amAVF05UAi7sk0iBIXhdp56t3vNKxFg
       - key: LOG_CHANNEL
         value: stack
       - key: LOG_LEVEL
@@ -32,98 +32,11 @@ services:
       - key: LOG_DEPRECATIONS_CHANNEL
         value: null
 
-  - type: script
-    name: laravel-breeze-migrations
-    env: docker
-    buildCommand: "docker build -t laravel-breeze-migrations ."
-    startCommand: "docker run laravel-breeze-migrations php artisan migrate --force"
-    envVars:
-      - key: APP_ENV
-        value: production
-      - key: APP_KEY
-        value: base64:xL42zCmPgIDK69zKZyCOKsqCbVDqgpqp6Z+dhmqpZPs=
-      - key: APP_URL
-        value: https://mini-twitter-rc3g.onrender.com
-      - key: DB_CONNECTION
-        value: pgsql
-      - key: DB_HOST
-        value: dpg-cgfm1am4daddcg0i37qg-a
-      - key: DB_PORT
-        value: 5432
-      - key: DB_DATABASE
-        value: twitter
-      - key: DB_USERNAME
-        value: root
-      - key: DB_PASSWORD
-        value: root
-
-
 databases:
-  - name: laravel
+  - name: mini-twitter
     engine: postgres
     version: "15"
     username: root
-    password: root
+    password: 0amAVF05UAi7sk0iBIXhdp56t3vNKxFg
     port: 5432
-    database: twitter
-server {
-  # Render provisions and terminates SSL
-  listen 80;
-
-  # Make site accessible from http://localhost/
-  server_name localhost;
-
-  root /var/www/html/public;
-  index index.html index.htm index.php;
-
-  # Disable sendfile as per https://docs.vagrantup.com/v2/synced-folders/virtualbox.html
-  sendfile off;
-
-  # Add stdout logging
-  error_log /dev/stdout info;
-  access_log /dev/stdout;
-
-  # block access to sensitive information about git
-  location /.git {
-    deny all;
-    return 403;
-  }
-
-  add_header X-Frame-Options "SAMEORIGIN";
-  add_header X-XSS-Protection "1; mode=block";
-  add_header X-Content-Type-Options "nosniff";
-
-  charset utf-8;
-
-  location / {
-      try_files $uri $uri/ /index.php?$query_string;
-  }
-
-  location = /favicon.ico { access_log off; log_not_found off; }
-  location = /robots.txt  { access_log off; log_not_found off; }
-
-  error_page 404 /index.php;
-
-  location ~* \.(jpg|jpeg|gif|png|css|js|ico|webp|tiff|ttf|svg)$ {
-    expires 5d;
-  }
-
-  location ~ \.php$ {
-    fastcgi_split_path_info ^(.+\.php)(/.+)$;
-    fastcgi_pass unix:/var/run/php-fpm.sock;
-    fastcgi_index index.php;
-    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    fastcgi_param SCRIPT_NAME $fastcgi_script_name;
-    include fastcgi_params;
-  }
-
-  # deny access to . files
-  location ~ /\. {
-    log_not_found off;
-    deny all;
-  }
-
-  location ~ /\.(?!well-known).* {
-    deny all;
-  }
-}
+    database: twitter_ll2x
