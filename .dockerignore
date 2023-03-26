@@ -1,4 +1,3 @@
-/storage/*.key
 /vendor
 .env
-.phpunit.result.cache
+nodes_modules
