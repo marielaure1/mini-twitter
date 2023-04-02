@@ -30,7 +30,7 @@ Route::prefix('tweets')->group(function () {
 });
 
 Route::prefix('users')->group(function () {
-    Route::get('/{id}/tweets', [UsersController::class, 'all'])->middleware(['auth', 'verified'])->name('users.all');
+    Route::get('/{username}/tweets', [UsersController::class, 'all'])->middleware(['auth', 'verified'])->name('users.all');
 });
 
 Route::fallback(function () { return view("404"); })->name('error');

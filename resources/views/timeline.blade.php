@@ -23,7 +23,7 @@
                     
                         @foreach ($tweets as $tweet)
                            <div class="tweets bg-secondary p-[20px] relative">
-                                <a href="/users/{{ $tweet->users_id }}/tweets" class="p-6 text-white">
+                                <a href="/users/{{ $tweet->username }}/tweets" class="p-6 text-white">
                                     <h2 class="text-primary font-bold text-md mb-3">{{ $tweet->name }} ({{ "@". $tweet->username }})</h2>
                                     <p class="mb-3 text-sm break-all">{{ $tweet->content }}</p>
                                     <p class="text-sm">{{ $carbon::parse($tweet->created_at)->diffForHumans() }}</p>

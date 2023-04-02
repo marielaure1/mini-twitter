@@ -37,19 +37,19 @@ class UsersController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function all(string $id)
+    public function all(string $username)
     {
         if (!auth()->user()) {
             return redirect()->route('error')->with('message', 'Vous devez être connecté !');
         }
 
-        $user = User::find($id);
+        $user = User::where("users.username", $username)->first();
 
         if (!$user) {
             return redirect()->route('error')->with('message', 'Cet utilisateur n\'existe pas !');
         }
 
-        $tweets = User::where("users.id", $id)->join('tweets', 'tweets.users_id', '=', 'users.id')
+        $tweets = User::where("users.username", $username)->join('tweets', 'tweets.users_id', '=', 'users.id')
         ->orderBy("tweets.created_at", "desc")
         ->paginate(10, ["tweets.*", "users.username", "users.name"]);
 
